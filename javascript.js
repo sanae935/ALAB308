@@ -26,3 +26,27 @@ plantGrowth(2);
 plantGrowth(3);  
 
 //Part 2: Thinking Bigger
+
+function requiredSpace(initialPlants, weeks) {
+    let plantCount = initialPlants * (2 ** weeks); 
+    return plantCount * spacePerPlant;  
+}
+// Calculate space needed for 100 plants over 10 weeks
+let spaceNeeded = requiredSpace(100, 10);  
+console.log(`After 10 weeks, you will need ${spaceNeeded.toFixed(2)} square meters of space.`);
+
+
+
+//Part 3: Errors in Judgement
+try {
+    const plantCount = 100 * (2 ** 10);  // Replaced Math.pow with **
+    const totalSpaceNeeded = plantCount * spacePerPlant;
+    
+    if (totalSpaceNeeded > area) {
+        throw new Error(`The required space (${totalSpaceNeeded.toFixed(2)} m²) exceeds the garden's capacity (${area.toFixed(2)} m²).`);
+    } else {
+        console.log(`The garden can hold the plants. Total space needed: ${totalSpaceNeeded.toFixed(2)} m².`);
+    }
+} catch (error) {
+    console.log(`Error: ${error.message}`);
+}
